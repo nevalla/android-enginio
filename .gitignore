@@ -27,3 +27,25 @@ proguard/
 *.ipr
 *.iws
 .idea/
+
+# Gradle
+.gradle
+build
+
+# Maven
+target
+release.properties
+pom.xml.*
+
+# Ant
+bin
+gen
+build.xml
+ant.properties
+local.properties
+proguard.cfg
+proguard-project.txt
+
+# Other
+.DS_Store
+tmp
