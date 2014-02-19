@@ -1,7 +1,11 @@
 android-enginio
 ===============
 
-An asynchronous, callback-based Enginio client library for Android built on top of [Android Asynchronous Http Client](https://github.com/loopj/android-async-http) and Apache's [HttpClient](http://hc.apache.org/httpcomponents-client-ga/) libraries.
+An asynchronous, callback-based [Enginio](https://engin.io/) client library for Android built on top of [Android Asynchronous Http Client](https://github.com/loopj/android-async-http) and Apache's [HttpClient](http://hc.apache.org/httpcomponents-client-ga/) libraries.
+Installation
+------------
+1. ADT (Eclipse)
+Clone this repo and add EnginioClient to your project as library
 
 Features
 --------
@@ -43,3 +47,4 @@ public static void delete(String url,
 public static void put(String url, String payload,
 			JsonHttpResponseHandler responseHandler)
 ```
+See [Enginio](https://engin.io/) documentation for more details.
