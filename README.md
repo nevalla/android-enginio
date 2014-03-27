@@ -1,4 +1,4 @@
-android-enginio
+qtc-sdk-android
 ===============
 
 An asynchronous, callback-based [Enginio](https://engin.io/) client library for Android built on top of [Android Asynchronous Http Client](https://github.com/loopj/android-async-http) and Apache's [HttpClient](http://hc.apache.org/httpcomponents-client-ga/) libraries.
