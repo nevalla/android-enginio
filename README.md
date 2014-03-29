@@ -32,8 +32,8 @@ Clone this repo and reference EnginioClient library in your project. [More detai
 ```java
 public class Todo extends EnginioObject {
 
-	public Todo(EnginioCollection collection) {
-		super(collection);
+	public Todo(Enginio eds) {
+		super(eds, "todos");
 	}
 	
 }
@@ -41,8 +41,8 @@ public class Todo extends EnginioObject {
 
 2. Use your class in code
 ```java
-Enginio eds = new Enginio(BACKEND_ID);
-EnginioCollection todos = eds.getCollection('todos');
+Enginio eds = new Enginio({EDS_BACKEND_ID});
+EnginioCollection todos = eds.getCollection("todos");
 
 // find todos objects
 todos.find(new EnginioHttpResponseHandler(eds, Todo.class){
