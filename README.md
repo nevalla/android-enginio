@@ -28,7 +28,7 @@ Clone this repo and reference EnginioClient library in your project. [More detai
 ## Usage
 
 ### High-level API
-1. Overwrite EnginioObject class
+Overwrite EnginioObject class
 ```java
 public class Todo extends EnginioObject {
 
@@ -39,7 +39,7 @@ public class Todo extends EnginioObject {
 }
 ```
 
-2. Use your class in code
+Use your class in code
 ```java
 Enginio eds = new Enginio({EDS_BACKEND_ID});
 EnginioCollection todos = eds.getCollection("todos");
@@ -70,14 +70,14 @@ todo.save(new EnginioHttpResponseHandler(todos) {
 ```
 
 ### Low-level REST API
-Use the following Enginio's static methods. See [Android Asynchronous Http Client](https://github.com/loopj/android-async-http) for more details.
+Use the following Enginio's public REST methods. See [Android Asynchronous Http Client](https://github.com/loopj/android-async-http) for more details.
 ```
-public static void get(String url, RequestParams params,
+public void get(String url, RequestParams params,
 			JsonHttpResponseHandler responseHandler)
-public static void post(String url, String payload,
+public void post(String url, String payload,
 			JsonHttpResponseHandler responseHandler)
-public static void delete(String url,
+public void put(String url, String payload,
 			JsonHttpResponseHandler responseHandler)
-public static void put(String url, String payload,
+public void delete(String url,
 			JsonHttpResponseHandler responseHandler)
 ```
