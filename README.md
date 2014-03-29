@@ -1,32 +1,66 @@
-qtc-sdk-android
-===============
+Qt Cloud Services SDK for Android
+==============================
 
-An asynchronous, callback-based [Enginio](https://engin.io/) client library for Android built on top of [Android Asynchronous Http Client](https://github.com/loopj/android-async-http) and Apache's [HttpClient](http://hc.apache.org/httpcomponents-client-ga/) libraries.
-Installation
-------------
-1. ADT (Eclipse)
-Clone this repo and add EnginioClient to your project as library
+This is Qt Cloud Services SDK for Android. An asynchronous, callback-based Enginio client library is built on top of [Android Asynchronous Http Client](https://github.com/loopj/android-async-http) and Apache's [HttpClient](http://hc.apache.org/httpcomponents-client-ga/) libraries.
 
-Features
---------
-###High-level API
+## What is Qt Cloud Services? See below:
+
+* The Qt Cloud Services home page is at https://www.qtc.io
+* The Developer Documentation page is at https://developer.qtc.io
+
+
+## Getting Started
+
+You can find a getting started guide for Qt Cloud Services at:
+
+http://developer.qtc.io/qtc/getting-started?snippets=android
+
+If you are looking for service specific guides, please see:
+
+* [Enginio Data Storage](http://developer.qtc.io/eds/getting-started?snippets=android)
+
+
+##Installation
+
+**In ADT (Eclipse)**
+Clone this repo and reference EnginioClient library in your project. [More details](http://developer.android.com/tools/projects/projects-eclipse.html#ReferencingLibraryProject).
+
+## Usage
+
+### High-level API
 1. Overwrite EnginioObject class
-```
+```java
 public class Todo extends EnginioObject {
 
-	public Todo() {
-		super("todo"); // pass objectType parameter to superclass's constructor
+	public Todo(EnginioCollection collection) {
+		super(collection);
 	}
 	
 }
 ```
 
 2. Use your class in code
-```
-EnginioRestClient.ENGINIO_BACKEND_ID = "Your backend ID";
-Todo todo = new Todo(); 
+```java
+Enginio eds = new Enginio(BACKEND_ID);
+EnginioCollection todos = eds.getCollection('todos');
+
+// find todos objects
+todos.find(new EnginioHttpResponseHandler(eds, Todo.class){
+	@Override
+	public void onSuccess(int statusCode, ArrayList<Object> response) {
+		// handle UI changes etc
+	}
+	@Override
+	public void onFailure(int statusCode, Throwable e,
+			JSONObject errorResponse) {
+		Log.i("Enginio failure", errorResponse.toString());
+	}
+});
+    	
+// create a new todo object
+Todo todo = new Todo(eds); 
 todo.put("title", "My first todo");
-todo.save(new EnginioHttpResponseHandler() {
+todo.save(new EnginioHttpResponseHandler(todos) {
   	@Override
   	public void onSuccess(int statusCode,
   			Object response) {
@@ -35,8 +69,8 @@ todo.save(new EnginioHttpResponseHandler() {
 });
 ```
 
-###Low-level REST API
-Use the following EnginioRestClient's static methods. See [Android Asynchronous Http Client](https://github.com/loopj/android-async-http) for more details.
+### Low-level REST API
+Use the following Enginio's static methods. See [Android Asynchronous Http Client](https://github.com/loopj/android-async-http) for more details.
 ```
 public static void get(String url, RequestParams params,
 			JsonHttpResponseHandler responseHandler)
@@ -47,4 +81,3 @@ public static void delete(String url,
 public static void put(String url, String payload,
 			JsonHttpResponseHandler responseHandler)
 ```
-See [Enginio](https://engin.io/) documentation for more details.
